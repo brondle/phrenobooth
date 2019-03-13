@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 360.1 324.1" style="enable-background:new 0 0 360.1 324.1;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#231F20;stroke-width:10;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;stroke:#231F20;stroke-width:10;stroke-miterlimit:10;}
+	.st2{fill:#231F20;stroke:#231F20;stroke-width:10;stroke-miterlimit:10;}
+</style>
+<title>camera_side</title>
+<line class="st0" x1="360" y1="324" x2="0.1" y2="324"/>
+<line class="st1" x1="360" y1="0.1" x2="360" y2="324"/>
+<path class="st2" d="M0.1,324v-252 M360,0.1l-360,72"/>
+<polygon class="st0" points="360,324 0.1,324 0.1,72.1 360,0.1 "/>
+</svg>
