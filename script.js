@@ -1,18 +1,30 @@
 let img;
 let poseNet;
 let poses = [];
+let data;
+let descriptions;
+
+function preload() {
+  data = loadJSON('./assets/descriptions.json')
+}
 
 function setup() {
-    createCanvas(640, 360);
-
+    descriptions = data.descriptions;
+    createCanvas(1000,1000);
     // create an image using the p5 dom library
     // call modelReady() when it is loaded
-    img = createImg('http://3e217b66.ngrok.io/img/file.jpg', imageReady);
-    // set the image size to the size of the canvas
+}
+
+function startPoseNet(filepath) {
+  console.log('hitting startposenet');
+  img = createImg(filepath, imageReady);
+  // set the image size to the size of the canvas
     img.size(width, height);
 
     img.hide(); // hide the image in the browser
     frameRate(1); // set the frameRate to 1 since we don't need it to be running quickly in this case
+  redraw();
+
 }
 
 // when the image is ready, then load up poseNet
@@ -27,13 +39,23 @@ function imageReady(){
     poseNet = ml5.poseNet(modelReady, options);
     // This sets up an event that listens to 'pose' events
     poseNet.on('pose', function (results) {
+      console.log('results: ', results)
+        for (i = 1; i <= 5; i++) {
+          let pose = results[0].pose
+          let part = pose.keypoints[i].part;
+          let positionX = pose.keypoints[i].position.x;
+          let positionY = pose.keypoints[i].position.y;
+          let descriptor = descriptions[Math.floor(Math.random()*descriptions.length)]
+      console.log(`#descriptor${i}`);
+      select(`#descriptor${i}`).html(`Your ${part} is at ${positionX}, ${positionY}. This usually indicates ${descriptor}`);
+
+        }
         poses = results;
     });
 }
 
 // when poseNet is ready, do the detection
 function modelReady() {
-    select('#status').html('Model Loaded');
 
     // When the model is ready, run the singlePose() function...
     // If/When a pose is detected, poseNet.on('pose', ...) will be listening for the detection results
@@ -43,6 +65,7 @@ function modelReady() {
 
 // draw() will not show anything until poses are found
 function draw() {
+  clear();
     if (poses.length > 0) {
         image(img, 0, 0, width, height);
         drawSkeleton(poses);
